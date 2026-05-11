@@ -1,0 +1,22 @@
+{
+  "name": "vkr-learning-api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "db:schema": "psql -d vkr_learning_app -f db/schema.sql",
+    "db:seed": "psql -d vkr_learning_app -f db/seed.sql",
+    "db:reset": "psql -d vkr_learning_app -f db/drop.sql && psql -d vkr_learning_app -f db/schema.sql && psql -d vkr_learning_app -f db/seed.sql",
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "check": "node --check src/server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.20.0"
+  }
+}

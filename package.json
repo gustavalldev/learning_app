@@ -1,0 +1,14 @@
+{
+  "name": "student-learning-mobile-system",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Mobile learning app prototype for VКR: React Native client, Node.js API, PostgreSQL schema.",
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix mobile",
+    "db:reset": "npm run db:reset --prefix backend",
+    "db:seed": "npm run db:seed --prefix backend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:mobile": "npm run start --prefix mobile",
+    "check": "npm run check --prefix backend && npm run check --prefix mobile"
+  }
+}
