@@ -8,9 +8,18 @@ CREATE TABLE users (
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
+CREATE TABLE student_groups (
+  id BIGSERIAL PRIMARY KEY,
+  name VARCHAR(50) NOT NULL UNIQUE,
+  speciality VARCHAR(150),
+  study_year INTEGER CHECK (study_year BETWEEN 1 AND 6),
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
 CREATE TABLE students (
   id BIGSERIAL PRIMARY KEY,
   user_id BIGINT NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+  group_id BIGINT REFERENCES student_groups(id) ON DELETE SET NULL,
   group_name VARCHAR(50) NOT NULL
 );
 
@@ -90,6 +99,9 @@ CREATE TABLE submission_answers (
 );
 
 CREATE INDEX idx_courses_teacher ON courses(teacher_id);
+CREATE INDEX idx_students_group ON students(group_id);
+CREATE INDEX idx_course_students_student ON course_students(student_id);
 CREATE INDEX idx_materials_course ON materials(course_id);
 CREATE INDEX idx_assignments_course ON assignments(course_id);
 CREATE INDEX idx_submissions_student ON submissions(student_id);
+CREATE INDEX idx_submissions_assignment ON submissions(assignment_id);
